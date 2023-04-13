@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option csharp_namespace = "GRpcServer";
+
+package countries;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/Empty.proto";
+
+
+
+service Countries {
+	rpc GetCountries (google.protobuf.Empty) returns (CountriesReply);
+}
+
+message CountriesReply {
+	repeated Country Countries = 1; 
+}
+
+message Country {
+	int32 Id = 1;
+	string Name = 2;
+	Continents Continent = 3;
+	google.protobuf.BoolValue IsActive = 4;
+	google.protobuf.Timestamp Established = 5;
+}
+
+enum Continents {
+	Unknown = 0;
+	Europe = 1;
+	Asia = 2;
+	SouthAmerica = 3;
+}

@@ -1,0 +1,76 @@
+﻿Unary Function
+rpc UnaryFunction (InputMessage1) returns (OutputMessage1);
+
+Client-Streaming Function
+rpc ClientStreamingFunction (stream InputMessage2) returns (OutputMessage2);
+
+Server-Streaming Function
+rpc ServerStreamingFunction (InputMessage3) returns (stream OutputMessage3);
+
+Bidirectional Streaming Function
+rpc BidirectionalStreamingFunction (stream InputMessage4) returns (stream OutputMessage3);
+
+
+* Scalar Type Values
+Protocol Buffer Type		|	C# Type
+------------------------------------------
+double						|	double
+float						|	float
+int32						|	int
+int64						|	long
+string						|	string
+bool						|	bool
+bool?						| 	google.protobuf.BoolValue
+double?						| 	google.protobuf.DoubleValue
+float?						| 	google.protobuf.FloatValue
+int?						| 	google.protobuf.Int32Value
+long?						| 	google.protobuf.Int64Value
+google.protobuf.Timestamp	|	DateTimeOffset
+google.protobuf.Timestamp	|	DateTime
+google.protobuf.Duration	|	TimeSpan
+bytes						|   byte[]
+					
+
+* Collections
+
+repeated				| List
+
+Example: 
+message CountrySearchRequest {
+	repeated int32 CountryIds = 1;
+}
+
+
+* Dictionaries
+
+map						| Dictionary
+
+Example:
+
+message CountryReply {
+	map<int32,string> countries = 1;
+}
+
+
+* Enum
+
+enum Continent {
+ Unknown = 0;
+ Europe = 1;
+ Asia = 2;
+}
+
+message CountryReply {
+	int32 CountryId = 1;
+	Continent Continent = 2;
+}
+
+* you can import proto file 
+Example:
+import "continent.proto"
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+* comments
+//
+/**/
